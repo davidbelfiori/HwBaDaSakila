@@ -1,4 +1,4 @@
-package BaDa.Hw.model;
+package org.bada.hw2.model;
 
 import java.util.List;
 import java.util.Objects;

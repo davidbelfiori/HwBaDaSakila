@@ -1,4 +1,4 @@
-package BaDa.Hw.dao;
+package org.bada.hw2.dao;
 
 import java.io.FileInputStream;
 import java.io.IOException;

@@ -1,6 +1,6 @@
-package BaDa.Hw.dao;
+package org.bada.hw2.dao;
 
-import BaDa.Hw.model.Customer;
+import org.bada.hw2.model.Customer;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

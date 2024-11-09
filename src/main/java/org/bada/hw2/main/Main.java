@@ -1,6 +1,9 @@
-import BaDa.Hw.model.Customer;
-import BaDa.Hw.dao.CustomerDAO;
-import BaDa.Hw.utility.Printer;
+package org.bada.hw2.main;
+
+import org.bada.hw2.eccezioni.NessunCustomerTrovato;
+import org.bada.hw2.model.Customer;
+import org.bada.hw2.dao.CustomerDAO;
+import org.bada.hw2.utility.Printer;
 
 
 import java.util.List;
@@ -28,7 +31,7 @@ public class Main {
 
                     }
                 } catch (Exception e) {
-                    e.printStackTrace(); //stampo lo stack delle chiamate
+                    throw new NessunCustomerTrovato("non ci sono Clienti che hanno noleggiato almeno un film in ciascuna categoria");
                 }
                 break;
 
@@ -41,8 +44,10 @@ public class Main {
 
                     }
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    throw new NessunCustomerTrovato("non ci sono  Clienti che hanno noleggiato più film rispetto alla media dei clienti");
                 }
+                break;
+
             default: break;
         }
 
