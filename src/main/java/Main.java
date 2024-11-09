@@ -1,5 +1,6 @@
-import model.Customer;
-import model.dao.CustomerDAO;
+import BaDa.Hw.model.Customer;
+import BaDa.Hw.dao.CustomerDAO;
+import BaDa.Hw.utility.Printer;
 
 
 import java.util.List;
@@ -12,8 +13,8 @@ public class Main {
         int scelta;
 
         Scanner scanner = new Scanner(System.in);
+        Printer.print("scgli tra:\n 1 Clienti che hanno noleggiato almeno un film in ciascuna categoria \n 2 Clienti che hanno noleggiato più film rispetto alla media dei clienti, ordinati per numero di noleggi");
 
-        System.out.println("scgli tra:\n 1 Clienti che hanno noleggiato almeno un film in ciascuna categoria \n 2 Clienti che hanno noleggiato più film rispetto alla media dei clienti, ordinati per numero di noleggi");
         scelta = scanner.nextInt();
         switch (scelta) {
             case 1:
@@ -23,7 +24,7 @@ public class Main {
                     List<Customer> customers = CustomerDAO.getAllCustomersCategories();
                     int i = 0;
                     for (Customer c : customers) {
-                        System.out.println(i++ +")" +"Nome: " + c.getFristName() + "Cognome " + c.getLastName());
+                       Printer.print(i++ +")" +"Nome: " + c.getFristName() + "Cognome " + c.getLastName());
 
                     }
                 } catch (Exception e) {
@@ -36,7 +37,7 @@ public class Main {
                     List<Customer> customers = CustomerDAO.getAllCustomerAvgRent();
                     int i = 0;
                     for (Customer c : customers) {
-                        System.out.println(i++ +")" +"Nome: " + c.getFristName() + "Cognome " + c.getLastName());
+                        Printer.print(i++ +")" +"Nome: " + c.getFristName() + "Cognome " + c.getLastName());
 
                     }
                 } catch (Exception e) {

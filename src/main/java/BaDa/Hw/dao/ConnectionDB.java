@@ -1,4 +1,4 @@
-package model.dao;
+package BaDa.Hw.dao;
 
 import java.io.FileInputStream;
 import java.io.IOException;
