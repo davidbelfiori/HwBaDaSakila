@@ -1,11 +1,11 @@
 package org.bada.hw2.model;
 
 import java.util.List;
-import java.util.Objects;
+
 
 public class Customer {
 
-    private final int customer_id;
+    private  int customerId;
     private int storeId;
     private String fristName;
     private String lastName;
@@ -17,8 +17,8 @@ public class Customer {
 
     private List<Customer> customers = null;
 
-    public Customer(int customer_id, int storeId, String fristName, String lastName, String email, int addressId, int active, String createDate, String lastUpdate) {
-        this.customer_id = customer_id;
+    public Customer(int customerId, int storeId, String fristName, String lastName, String email, int addressId, int active, String createDate, String lastUpdate, List<Customer> customers) {
+        this.customerId = customerId;
         this.storeId = storeId;
         this.fristName = fristName;
         this.lastName = lastName;
@@ -27,16 +27,18 @@ public class Customer {
         this.active = active;
         this.createDate = createDate;
         this.lastUpdate = lastUpdate;
+        this.customers = customers;
     }
 
     public Customer(int customerId, String fristName, String lastName) {
-        customer_id = customerId;
+        this.customerId = customerId;
         this.fristName = fristName;
         this.lastName = lastName;
     }
 
-    public int getCustomer_id() {
-        return customer_id;
+
+    public int getCustomerId() {
+        return customerId;
     }
 
     public int getStoreId() {
@@ -103,20 +105,13 @@ public class Customer {
         this.lastUpdate = lastUpdate;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Customer customer = (Customer) o;
-        return customer_id == customer.customer_id && storeId == customer.storeId && addressId == customer.addressId && active == customer.active && Objects.equals(fristName, customer.fristName) && Objects.equals(lastName, customer.lastName) && Objects.equals(email, customer.email) && Objects.equals(createDate, customer.createDate) && Objects.equals(lastUpdate, customer.lastUpdate);
-    }
 
 
 
     @Override
     public String toString() {
         return "Customer{" +
-                "customer_id=" + customer_id +
+                "customerId=" + customerId +
                 ", storeId=" + storeId +
                 ", fristName='" + fristName + '\'' +
                 ", lastName='" + lastName + '\'' +

@@ -1,16 +1,20 @@
 package org.bada.hw2.dao;
 
+import org.bada.hw2.eccezioni.NessunCustomerTrovato;
 import org.bada.hw2.model.Customer;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerDAO {
 
-    public  static  List<Customer> getAllCustomerAvgRent() throws  Exception{
+
+
+    public  static  List<Customer> getAllCustomerAvgRent() throws  NessunCustomerTrovato, SQLException {
         Statement stmt= null;
         Connection conn=null;
         List<Customer> listOfCustomer = new ArrayList<>();
@@ -31,7 +35,7 @@ public class CustomerDAO {
                     ) as noleggi_per_cliente);""");
 
             if (!rs.first()) {
-                throw new Exception("Non esiste alcun cliente che ha noleggiato almeno un film di ogni categoria ");
+                throw new NessunCustomerTrovato("Non esiste alcun cliente che ha noleggiato almeno un film di ogni categoria ");
             }
 
             rs.first();
@@ -56,12 +60,12 @@ public class CustomerDAO {
 
 
 
-    public static List<Customer> getAllCustomersCategories() throws Exception{
+    public static List<Customer> getAllCustomersCategories() throws NessunCustomerTrovato,SQLException{
         Statement stmt= null;
         Connection conn=null;
         List<Customer> listOfCustomer = new ArrayList<>();
 
-        try {
+
             conn = ConnectionDB.getConnection();
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             ResultSet rs= stmt.executeQuery("""
@@ -76,7 +80,7 @@ public class CustomerDAO {
                     HAVING COUNT(DISTINCT category.category_id) = (SELECT COUNT(*) FROM category);""");
 
             if (!rs.first()) {
-                throw new Exception("Non esiste alcun cliente che ha noleggiato almeno un film di ogni categoria ");
+                throw new NessunCustomerTrovato("Non esiste alcun cliente che ha noleggiato almeno un film di ogni categoria ");
             }
 
             rs.first();
@@ -88,12 +92,10 @@ public class CustomerDAO {
                 listOfCustomer.add(new Customer(customentId,fristName,lastName));
             }while (rs.next());
 
-        }finally {
-            if (stmt != null)
-                stmt.close();
-            if (conn != null)
-                conn.close();
-        }
+
+        stmt.close();
+        conn.close();
+
 
         return listOfCustomer;
     }
